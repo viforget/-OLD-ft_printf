@@ -33,48 +33,61 @@ unsigned int	cnt_percent(const char *format)
 	return (p);
 }
 
-void			*unitfunct(void	*(*f)(void *, char *, unsigned int))
+void			setfunctionnum(void *nbr, char c, unsigned int size)
 {
-	f = malloc(sizeof(*f) * 6);
-	f[1] = printushortshort(short short, char *, unsigned int);
-	f[2] = printushort(short, char *, unsigned int);
-	f[4] = printulonglong(long long, char *, unsigned int);
-	f[5] = printulong(long, char *, unsigned int);
-	return (f);
+	char *st;
+	int base;
+	int nb;
+
+	size++;
+	base = 2;
+	st = "0123456789abcdef";
+	if (c <= 'Z')
+	{
+		c += 32;
+		st = "0123456789ABCDEF";
+	}
+	while ((BASE[base] != c && base <= 16) || BASE[base] == '.')
+		base++;
+	if (base <= 16)
+		printnbr((ull)nbr, st, base);
+	else if (c == 'd' || c == 'i')
+	{
+		nb = (int)nbr;
+		if ((int)nbr < 0)
+		{
+			ft_putchar('-');
+			nb = nb * -1;
+		}
+		printnbr(nb, "0123456789", 10);
+	}		
 }
 
-void			setfunctionnum(const char *st, unsigned int size)
-{
-	void *(*f)(void *, char *, unsigned int);
-
-	f = unitfunct(f);
-}
-
-void			setfunction(const char *st, void *var, char *bs)
+void			setfunction(const char *st, void *var /*, char *bs*/)
 {
 	if (*st == 'h')
 	{
 		st++;
 		if (*st == 'h')
-			return (setfunctionnum(st + 1, 1));
-		return (setfunctionnum(st + 1, 2));
+			return (setfunctionnum(var, st[1], 1));
+		return (setfunctionnum(var ,st[1], 2));
 
 	}
 	else if (*st == 'l')
 	{
 		st++;
 		if (*st == 'l')
-			return (setfunctionnum(st + 1, 4));
-		return (setfunctionnum(st + 1, 5));
+			return (setfunctionnum(var, st[1], 4));
+		return (setfunctionnum(var, st[1], 5));
 	}
 	else if (*st == 's')
-		ft_putstr(*var);
+		ft_putstr(var);
 	else if (*st == 'c')
-		ft_putchar(*var);
-	setfunctionnum(st, 0);
+		ft_putchar((char)var);
+	setfunctionnum(var, *st, 0);
 }
 
-int				ft_printf(const char *format, ...)
+/*int				ft_printf(const char *format, ...)
 {
 	va_list			ap;
 	unsigned int	p;
@@ -97,10 +110,11 @@ int				ft_printf(const char *format, ...)
 	}
 	write(1, format + s, e - s);
 	return(0);
-}
+}*/
 
 int 			main()
 {
-	ft_printf("HEY %dSAL%iUT\n");	
+	setfunction("xsdf", (void *)123);
+	//ft_printf("HEY %dSAL%iUT\n");	
 	return (0);
 }

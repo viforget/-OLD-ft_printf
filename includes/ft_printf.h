@@ -16,5 +16,9 @@
 # include "../libft/libft.h"
 # include <stdarg.h>
 
+# define BASE "..b.....o.u.....x"
+# define ull unsigned long long
+
+void	printnbr(unsigned long long n, char *st, int base);
 
 #endif
