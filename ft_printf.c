@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
+#include <limits.h>
+#include <math.h>
+#include <stdio.h>
 
 unsigned int	cnt_percent(const char *format)
 {
@@ -33,7 +36,7 @@ unsigned int	cnt_percent(const char *format)
 	return (p);
 }
 
-void			setfunctionnum(void *nbr, char c, unsigned int size)
+void			setfunctionnum(void *nbr, char c, unsigned long long size)
 {
 	char *st;
 	int base;
@@ -50,9 +53,13 @@ void			setfunctionnum(void *nbr, char c, unsigned int size)
 	while ((BASE[base] != c && base <= 16) || BASE[base] == '.')
 		base++;
 	if (base <= 16)
-		printnbr((ull)nbr, st, base);
+	{
+		printnbr((ull)nbr % size, st, base);
+	}
 	else if (c == 'd' || c == 'i')
 	{
+		
+		printnbr((ull)nbr % size, st, base);
 		nb = (int)nbr;
 		if ((int)nbr < 0)
 		{
@@ -69,22 +76,22 @@ void			setfunction(const char *st, void *var /*, char *bs*/)
 	{
 		st++;
 		if (*st == 'h')
-			return (setfunctionnum(var, st[1], 1));
-		return (setfunctionnum(var ,st[1], 2));
+			return (setfunctionnum(var, st[1], UCHAR_MAX));
+		return (setfunctionnum(var ,st[1], USHRT_MAX));
 
 	}
 	else if (*st == 'l')
 	{
 		st++;
 		if (*st == 'l')
-			return (setfunctionnum(var, st[1], 4));
-		return (setfunctionnum(var, st[1], 5));
+			return (setfunctionnum(var, st[1], ULONG_MAX));
+		return (setfunctionnum(var, st[1], ULLONG_MAX));
 	}
 	else if (*st == 's')
 		ft_putstr(var);
 	else if (*st == 'c')
 		ft_putchar((char)var);
-	setfunctionnum(var, *st, 0);
+	setfunctionnum(var, *st, UINT_MAX);
 }
 
 /*int				ft_printf(const char *format, ...)
@@ -114,7 +121,8 @@ void			setfunction(const char *st, void *var /*, char *bs*/)
 
 int 			main()
 {
-	setfunction("xsdf", (void *)123);
+	setfunction("usdf", -123);
+	printf("\n%u\n", -123);
 	//ft_printf("HEY %dSAL%iUT\n");	
 	return (0);
 }
