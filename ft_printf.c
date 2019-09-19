@@ -59,10 +59,11 @@ void			setfunctionnum(void *nbr, char c, unsigned long long size)
 	else if (c == 'd' || c == 'i')
 	{
 		
-		printnbr((ull)nbr % size, st, base);
-		nb = (int)nbr;
-		if ((int)nbr < 0)
+		nb = ((int)nbr + INT_MAX + 1) % UINT_MAX - INT_MAX - 1;
+		if (nb < 0)
 		{
+			if (nb == INT_MIN)
+				return(ft_putstr("-2147483648"));
 			ft_putchar('-');
 			nb = nb * -1;
 		}
@@ -70,7 +71,7 @@ void			setfunctionnum(void *nbr, char c, unsigned long long size)
 	}		
 }
 
-void			setfunction(const char *st, void *var /*, char *bs*/)
+void			setfunction(const char *st, void *var)
 {
 	if (*st == 'h')
 	{
@@ -94,7 +95,7 @@ void			setfunction(const char *st, void *var /*, char *bs*/)
 	setfunctionnum(var, *st, UINT_MAX);
 }
 
-/*int				ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	va_list			ap;
 	unsigned int	p;
@@ -104,25 +105,27 @@ void			setfunction(const char *st, void *var /*, char *bs*/)
 	s = 0;
 	e = 0;
 	p = cnt_percent(format);
+	ap = va_start()
 	while(format[e] != '\0')
 	{
 		if (format[e] == '%')
 		{
 			write(1, format + s, e - s);
-			setfunction(format + e + 1);
+			setfunction(format + e + 1, va_arg(ap));
 			e += 2;
 			s = e;
 		}
 		e++;
 	}
 	write(1, format + s, e - s);
+	va_end(ap);
 	return(0);
-}*/
+}
 
 int 			main()
 {
-	setfunction("usdf", -123);
-	printf("\n%u\n", -123);
+	setfunction("dsdf", 2147483648);
+	//printf("\n%d\n", INT_MAX + 1);
 	//ft_printf("HEY %dSAL%iUT\n");	
 	return (0);
 }
