@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:58:30 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/13 15:39:41 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/19 09:52:53 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ unsigned int	cnt_percent(const char *format)
 	return (p);
 }
 
-void			setfunctionnum(void *nbr, char c, unsigned long long size)
+void			setfunctionnum(long long nbr, char c, unsigned long long size)
 {
 	char *st;
 	int base;
@@ -71,28 +71,28 @@ void			setfunctionnum(void *nbr, char c, unsigned long long size)
 	}		
 }
 
-void			setfunction(const char *st, void *var)
+void			setfunction(const char *st, va_list  ap)
 {
 	if (*st == 'h')
 	{
 		st++;
 		if (*st == 'h')
-			return (setfunctionnum(var, st[1], UCHAR_MAX));
-		return (setfunctionnum(var ,st[1], USHRT_MAX));
+			return (setfunctionnum(va_arg(ap, long long), st[1], UCHAR_MAX));
+		return (setfunctionnum(va_arg(ap, long long) ,st[1], USHRT_MAX));
 
 	}
 	else if (*st == 'l')
 	{
 		st++;
 		if (*st == 'l')
-			return (setfunctionnum(var, st[1], ULONG_MAX));
-		return (setfunctionnum(var, st[1], ULLONG_MAX));
+			return (setfunctionnum(va_arg(ap, long long), st[1], ULONG_MAX));
+		return (setfunctionnum(va_arg(ap, long long), st[1], ULLONG_MAX));
 	}
 	else if (*st == 's')
-		ft_putstr(var);
+		ft_putstr(va_arg(ap, char *));
 	else if (*st == 'c')
-		ft_putchar((char)var);
-	setfunctionnum(var, *st, UINT_MAX);
+		ft_putchar(va_arg(ap, int));
+	setfunctionnum(va_arg(ap, long long), *st, UINT_MAX);
 }
 
 int				ft_printf(const char *format, ...)
@@ -105,13 +105,13 @@ int				ft_printf(const char *format, ...)
 	s = 0;
 	e = 0;
 	p = cnt_percent(format);
-	ap = va_start()
+	va_start(ap, format);
 	while(format[e] != '\0')
 	{
 		if (format[e] == '%')
 		{
 			write(1, format + s, e - s);
-			setfunction(format + e + 1, va_arg(ap));
+			setfunction(format + e + 1, ap);
 			e += 2;
 			s = e;
 		}
@@ -124,8 +124,8 @@ int				ft_printf(const char *format, ...)
 
 int 			main()
 {
-	setfunction("dsdf", 2147483648);
+	//setfunction("dsdf", 2147483648);
 	//printf("\n%d\n", INT_MAX + 1);
-	//ft_printf("HEY %dSAL%iUT\n");	
+	ft_printf("HEY %s\nSAL%lli\nUT\n", "HEY ",12215321061532);	
 	return (0);
 }
