@@ -36,13 +36,12 @@ unsigned int	cnt_percent(const char *format)
 	return (p);
 }
 
-void			setfunctionnum(long long nbr, char c, unsigned long long size)
+void			setfunctionnum(va_list nbr, char c, unsigned long long size)
 {
 	char *st;
 	int base;
-	int nb;
+	long long nb;
 
-	size++;
 	base = 2;
 	st = "0123456789abcdef";
 	if (c <= 'Z')
@@ -54,12 +53,11 @@ void			setfunctionnum(long long nbr, char c, unsigned long long size)
 		base++;
 	if (base <= 16)
 	{
-		printnbr((ull)nbr % size, st, base);
+		printnbr(va_arg(nbr, ull) % size, st, base);
 	}
 	else if (c == 'd' || c == 'i')
 	{
-		
-		nb = ((int)nbr + INT_MAX + 1) % UINT_MAX - INT_MAX - 1;
+		nb = (va_arg(nbr, ull) + size / 2 + 1) % size - (size / 2) - 1;
 		if (nb < 0)
 		{
 			if (nb == INT_MIN)
@@ -71,28 +69,38 @@ void			setfunctionnum(long long nbr, char c, unsigned long long size)
 	}		
 }
 
-void			setfunction(const char *st, va_list  ap)
+int			setfunction(const char *st, va_list  ap)
 {
 	if (*st == 'h')
 	{
 		st++;
 		if (*st == 'h')
-			return (setfunctionnum(va_arg(ap, long long), st[1], UCHAR_MAX));
-		return (setfunctionnum(va_arg(ap, long long) ,st[1], USHRT_MAX));
+		{
+			setfunctionnum(ap, st[1], UCHAR_MAX);
+			return(3);
+		}
+		setfunctionnum(ap, st[0], USHRT_MAX);
+		return (2);
 
 	}
 	else if (*st == 'l')
 	{
 		st++;
 		if (*st == 'l')
-			return (setfunctionnum(va_arg(ap, long long), st[1], ULONG_MAX));
-		return (setfunctionnum(va_arg(ap, long long), st[1], ULLONG_MAX));
+		{
+			setfunctionnum(ap, st[1], ULLONG_MAX);
+			return (3);
+		}
+		setfunctionnum(ap, st[0], ULONG_MAX);
+		return (2);
 	}
 	else if (*st == 's')
 		ft_putstr(va_arg(ap, char *));
 	else if (*st == 'c')
 		ft_putchar(va_arg(ap, int));
-	setfunctionnum(va_arg(ap, long long), *st, UINT_MAX);
+	else
+		setfunctionnum(ap, *st, UINT_MAX);
+	return(1);
 }
 
 int				ft_printf(const char *format, ...)
@@ -111,8 +119,7 @@ int				ft_printf(const char *format, ...)
 		if (format[e] == '%')
 		{
 			write(1, format + s, e - s);
-			setfunction(format + e + 1, ap);
-			e += 2;
+			e += setfunction(format + e + 1, ap) + 1;
 			s = e;
 		}
 		e++;
@@ -126,6 +133,7 @@ int 			main()
 {
 	//setfunction("dsdf", 2147483648);
 	//printf("\n%d\n", INT_MAX + 1);
-	ft_printf("HEY %s\nSAL%lli\nUT\n", "HEY ",12215321061532);	
+	ft_printf("HEY: %s\nNBR = %li\n<3\n", "HEY ", 122153210615);		
+	printf("HEY: %s\nNBR = %li\n<3\n", "HEY ", 122153210615);	
 	return (0);
 }
