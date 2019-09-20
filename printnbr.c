@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 06:36:28 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/20 06:38:28 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/20 08:17:19 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	printnbr2(char *st, int d, int base, unsigned long long n)
 {
 	char	*str;
 
-	if (!(str = (char *)malloc(sizeof(char) * d + 1)))
+	if (!(str = (char *)memaset(sizeof(char) * (g_pars->space > d ? g_pars->space : d) + 1, g_pars->zero)))
 		return ;
 	str[d] = 0;
 	while (d > 0)

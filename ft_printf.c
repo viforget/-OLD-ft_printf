@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:58:30 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/20 06:59:26 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/20 07:47:53 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int				ft_printf(const char *format, ...)
 		if (format[e] == '%')
 		{
 			write(1, format + s, e - s);
+			formati[e] == '0' ? g_pars = '0' : g_pars = ' ';
 			e += setfunction(format + e + 1, ap) + 1;
 			s = e;
 		}

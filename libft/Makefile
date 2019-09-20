@@ -6,7 +6,7 @@
 #    By: viforget <viforget@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 20:55:26 by viforget          #+#    #+#              #
-#    Updated: 2019/06/21 00:49:06 by ntom             ###   ########.fr        #
+#    Updated: 2019/09/20 07:19:46 by viforget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,82 +87,9 @@ SRC = ft_atoi.c\
 	ft_strswap.c\
 	is_on_off.c\
 	ft_putmultstr.c\
+	ft_memaset.c\
 
-OBJ = ft_atoi.o\
-	ft_memcmp.o\
-	ft_putstr.o\
-	ft_striteri.o\
-	ft_strnstr.o\
-	ft_bzero.o\
-	ft_memcpy.o\
-	ft_putstr_fd.o\
-	ft_strjoin.o\
-	ft_strrchr.o\
-	ft_isalnum.o\
-	ft_memdel.o\
-	ft_strcat.o\
-	ft_strlcat.o\
-	ft_strsplit.o\
-	ft_isalpha.o\
-	ft_memmove.o\
-	ft_strchr.o\
-	ft_strlen.o\
-	ft_strstr.o\
-	ft_isascii.o\
-	ft_memset.o\
-	ft_strclr.o\
-	ft_strmap.o\
-	ft_strsub.o\
-	ft_isdigit.o\
-	ft_putchar.o\
-	ft_strcmp.o\
-	ft_strmapi.o\
-	ft_strtrim.o\
-	ft_isprint.o\
-	ft_putchar_fd.o\
-	ft_strcpy.o\
-	ft_strncat.o\
-	ft_tolower.o\
-	ft_itoa.o\
-	ft_putendl.o\
-	ft_strdel.o\
-	ft_strncmp.o\
-	ft_toupper.o\
-	ft_memalloc.o\
-	ft_putendl_fd.o\
-	ft_strdup.o\
-	ft_strncpy.o\
-	ft_memccpy.o\
-	ft_putnbr.o\
-	ft_strequ.o\
-	ft_strnequ.o\
-	ft_memchr.o\
-	ft_putnbr_fd.o\
-	ft_striter.o\
-	ft_strnew.o\
-	ft_lstnew.o\
-	ft_lstdelone.o\
-	ft_lstadd.o\
-	ft_lstdel.o\
-	ft_lstiter.o\
-	ft_lstmap.o\
-	ft_atol.o\
-	ft_is_div_by.o\
-	ft_sqrt.o\
-	ft_swap.o\
-	ft_puttab.o\
-	ft_strjoindel.o\
-	ft_strnjoin.o\
-	ft_strnjoindel.o\
-	get_next_line.o\
-	ft_lstadde.o\
-	ft_sqrtp.o\
-	ft_strjoindele.o\
-	ft_strjoindel2.o\
-	ft_tabdel.o\
-	ft_strswap.o\
-	is_on_off.o\
-	ft_putmultstr.o\
+OBJ = $(SOURCES:.c=.o)
 
 all : $(NAME)
 
