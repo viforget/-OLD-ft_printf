@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printnbr.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/20 06:36:28 by viforget          #+#    #+#             */
+/*   Updated: 2019/09/20 06:38:28 by viforget         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
-#include <stdio.h>
 
 void	printnbr2(char *st, int d, int base, unsigned long long n)
 {
@@ -20,8 +31,8 @@ void	printnbr2(char *st, int d, int base, unsigned long long n)
 
 void	printnbr(unsigned long long n, char *st, int base)
 {
-	unsigned long long nb;
-	int	d;
+	unsigned long long	nb;
+	int					d;
 
 	d = 0;
 	if (n == 0)
