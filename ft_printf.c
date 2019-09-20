@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:58:30 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/20 06:49:18 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/20 06:59:26 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,11 @@ int			setfunction(const char *st, va_list ap)
 int				ft_printf(const char *format, ...)
 {
 	va_list			ap;
-	unsigned int	p;
 	unsigned int	s;
 	unsigned int	e;
 
 	s = 0;
 	e = 0;
-	p = cnt_percent(format);
 	va_start(ap, format);
 	while (format[e] != '\0')
 	{
