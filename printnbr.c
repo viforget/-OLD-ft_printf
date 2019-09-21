@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 06:36:28 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/21 16:13:53 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/21 17:52:11 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,22 @@ char	*parsing(char *st, int d, t_arg pars, char free)
 	i = 0;
 	if (d < pars.space)
 	{
-		if (pars.minus == 0 || pars.zero == '0')
-			i = pars.space - d + 1;
+		if (pars.minus == 0 /*|| pars.zero == '0'*/)
+			i = pars.space - d ;
 		d = pars.space;
 	}
-	/*else if (pars.plus != 0)
-		d++;*/
+	else if (pars.plus != 0)
+		i++;
 	else if (pars.plus == 0)
 		return (st);
-	str = ft_memaset((sizeof(char)) * (d + 1), pars.zero);
+	pars.minus == 1 ? pars.zero = ' ' : 0 ;
+	str = ft_memaset((sizeof(char)) * d, pars.zero);
 	if (pars.neg == 1)
-		pars.zero == '0' ? (set1(str, 0, '-') %  1) + 1: (i = set1(str, i, '-'));
+		pars.zero == '0' ? set1(str, 0, '-') : (i = set1(str, i, '-'));
 	else if (pars.plus == 1)
-		pars.zero == '0' ? (set1(str, 0, '+') %  1) + 1: (i = set1(str, i, '+'));
+		pars.zero == '0' ? set1(str, 0, '+') + 1: (i = set1(str, i, '+'));
 	else if (pars.plus == -1)
-		pars.zero == '0' ? (set1(str, 0, ' ') %  1) + 1: (i = set1(str, i, ' '));
+		pars.zero == '0' ? set1(str, 0, ' ') + 1: (i = set1(str, i, ' '));
 	while(*st)
 	{
 		str[i] = *st;
@@ -92,14 +93,19 @@ void	printnbr(unsigned long long n, char *st, int base)
 	printnbr2(st, d, base, n);
 }
 
-int		main(void)
+int		main(int ac, char **argv)
 {
 	t_arg arg;
-
-	arg.zero = '0';
-	arg.minus = 1;
-	arg.plus = -1;
-	arg.neg = 1;
-	arg.space = 5;
-	ft_putstr(parsing("123", 3, arg, 0));
+	
+	if (ac >= 5)
+	{
+		arg.zero = argv[1][0];
+		arg.plus = ft_atoi(argv[2]);
+		arg.minus = ft_atoi(argv[3]);
+		arg.space = ft_atoi(argv[4]);
+		arg.neg = ft_atoi(argv[5]);
+		ft_putstr(parsing("123", 3, arg, 0));
+		ft_putchar('|');
+		ft_putchar('\n');
+	}
 }
