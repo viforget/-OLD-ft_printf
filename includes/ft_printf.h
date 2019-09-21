@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 15:14:25 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/20 08:15:45 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/21 09:40:27 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,18 @@ void	printnbr(unsigned long long n, char *st, int base);
 ** STRUCTURE
 */
 
-typedef	struct	s_pars
+typedef	struct	s_arg
 {
 	char		zero;
+	char		minus;
 	char		plus;
+	char		neg;
 	int 		space;
-}				t_pars;
+}				t_arg;
 
 /*
 **	GLOBAL
 */
 
-t_pars			*g_pars;
 
 #endif
