@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 15:14:25 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/21 09:40:27 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/22 12:35:45 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@
 # define ull unsigned long long
 
 /*
-**	PRINTNBR.C
-*/
-
-void	printnbr(unsigned long long n, char *st, int base);
-
-/*
 ** STRUCTURE
 */
 
@@ -48,8 +42,20 @@ typedef	struct	s_arg
 }				t_arg;
 
 /*
-**	GLOBAL
+**	PRINTNBR.C
 */
 
+void	printnbr(unsigned long long n, char *st, int base, t_arg arg);
+
+
+/*
+** STOCKARG.C
+*/
+
+int		stockarg(t_arg *arg, char const *fo);
+
+/*
+**	GLOBAL
+*/
 
 #endif

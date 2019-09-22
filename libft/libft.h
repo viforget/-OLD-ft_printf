@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 22:51:20 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/20 07:20:46 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/22 09:33:25 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ char				*ft_strjoindel2(char *s1, char *s2);
 void				ft_tabdel(char **tab, size_t j);
 void				ft_strswap(char **a, char **b);
 void				*ft_memaset(size_t size, char c);
+void				ft_putstrdel(char *s);
 
 /*
 ** is_on_off.c

@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 12:58:30 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/20 07:47:53 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/22 14:42:06 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ unsigned int	cnt_percent(const char *format)
 	return (p);
 }
 
-void			setfunctionnum(va_list nbr, char c, unsigned long long size)
+void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 {
 	char		*st;
 	int			base;
@@ -50,7 +50,7 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size)
 		base++;
 	if (base <= 16)
 	{
-		printnbr(va_arg(nbr, ull) % size, st, base);
+		printnbr(va_arg(nbr, ull) % size, st, base, arg);
 	}
 	else if (c == 'd' || c == 'i')
 	{
@@ -59,44 +59,49 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size)
 		{
 			if (nb == INT_MIN)
 				return (ft_putstr("-2147483648"));
-			ft_putchar('-');
+			arg.neg = 1;
 			nb = nb * -1;
 		}
-		printnbr(nb, "0123456789", 10);
+		printnbr(nb, "0123456789", 10, arg);
 	}
 }
 
 int			setfunction(const char *st, va_list ap)
 {
+	t_arg 	arg;
+	int 	i;
+
+	i = stockarg(&arg, st);
+	st += i;
 	if (*st == 'h')
 	{
 		st++;
 		if (*st == 'h')
 		{
-			setfunctionnum(ap, st[1], UCHAR_MAX);
-			return (3);
+			setfunctionnum(ap, st[1], UCHAR_MAX, arg);
+			return (3 + i);
 		}
-		setfunctionnum(ap, st[0], USHRT_MAX);
-		return (2);
+		setfunctionnum(ap, st[0], USHRT_MAX, arg);
+		return (2 + i);
 	}
 	else if (*st == 'l')
 	{
 		st++;
 		if (*st == 'l')
 		{
-			setfunctionnum(ap, st[1], ULLONG_MAX);
-			return (3);
+			setfunctionnum(ap, st[1], ULLONG_MAX, arg);
+			return (3 + i);
 		}
-		setfunctionnum(ap, st[0], ULONG_MAX);
-		return (2);
+		setfunctionnum(ap, st[0], ULONG_MAX, arg);
+		return (2 + i);
 	}
 	else if (*st == 's')
-		ft_putstr(va_arg(ap, char *));
+		ft_putstr(va_arg(ap, char *)); //THINK ABOUT THIS
 	else if (*st == 'c')
-		ft_putchar(va_arg(ap, int));
+		ft_putchar(va_arg(ap, int)); //THIS TOO
 	else
-		setfunctionnum(ap, *st, UINT_MAX);
-	return (1);
+		setfunctionnum(ap, *st, UINT_MAX, arg);
+	return (1 + i);
 }
 
 int				ft_printf(const char *format, ...)
@@ -113,7 +118,6 @@ int				ft_printf(const char *format, ...)
 		if (format[e] == '%')
 		{
 			write(1, format + s, e - s);
-			formati[e] == '0' ? g_pars = '0' : g_pars = ' ';
 			e += setfunction(format + e + 1, ap) + 1;
 			s = e;
 		}
@@ -124,9 +128,12 @@ int				ft_printf(const char *format, ...)
 	return (0);
 }
 
+#include <stdio.h>
+
 int				main(void)
 {
-	ft_printf("HEY: %s\nNBR = %li\n<3\n", "HEY ", 122153210615);
-	printf("HEY: %s\nNBR = %li\n<3\n", "HEY ", 122153210615);
+	ft_printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
+	printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
+	//ft_printf("|%+5-d|\n", 123);
 	return (0);
 }
