@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 15:14:25 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/22 12:35:45 by viforget         ###   ########.fr       */
+/*   Updated: 2019/09/23 08:58:40 by viforget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	printnbr(unsigned long long n, char *st, int base, t_arg arg);
 int		stockarg(t_arg *arg, char const *fo);
 
 /*
-**	GLOBAL
+** SETFUNCTION.C
 */
+
+int		setfunction(const char *st, va_list ap);
 
 #endif
