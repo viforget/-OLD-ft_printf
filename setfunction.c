@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   setfunction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: lhenneca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/13 15:05:50 by lhenneca          #+#    #+#             */
+/*   Updated: 2019/11/13 15:17:29 by lhenneca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setfunction.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 08:52:04 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/23 08:52:27 by viforget         ###   ########.fr       */
+/*   Updated: 2019/11/13 14:56:50 by lhenneca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
+#include <stdio.h>
 
 void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 {
@@ -24,6 +37,11 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 	{
 		c += 32;
 		st = "0123456789ABCDEF";
+	}
+	if (c == 'f')
+	{
+		st = ft_float(precision(va_arg(nbr, double), 6), 6);
+		ft_putstrdel(parsing(st, ft_strlen(st), arg)); //Penser a varier 6 en fonction du %.
 	}
 	while ((BASE[base] != c && base <= 16) || BASE[base] == '.')
 		base++;

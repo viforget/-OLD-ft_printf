@@ -6,7 +6,7 @@
 /*   By: viforget <viforget@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 15:14:25 by viforget          #+#    #+#             */
-/*   Updated: 2019/09/23 08:58:40 by viforget         ###   ########.fr       */
+/*   Updated: 2019/11/13 15:11:15 by lhenneca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef	struct	s_arg
 **	PRINTNBR.C
 */
 
+char	*parsing(char *st, int d, t_arg pars);
 void	printnbr(unsigned long long n, char *st, int base, t_arg arg);
 
 
@@ -59,5 +60,12 @@ int		stockarg(t_arg *arg, char const *fo);
 */
 
 int		setfunction(const char *st, va_list ap);
+
+/*
+** FT_FLOAT.C
+*/
+
+float	precision(long double f, int p);
+char	*ft_float(long double f, int maxF);
 
 #endif
