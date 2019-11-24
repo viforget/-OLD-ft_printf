@@ -21,6 +21,7 @@ t_arg	arginit()
 	arg.plus = 0;
 	arg.neg = 0; //NOT SURE //NAN C'EST BON JE SUIS SUR MAINTENANT
 	arg.space = 0;
+    arg.width = 0;
 	return (arg);
 }
 

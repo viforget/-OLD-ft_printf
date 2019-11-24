@@ -39,6 +39,9 @@ typedef	struct	s_arg
 	char		plus;
 	char		neg;
 	int 		space;
+    int 		width;
+    int         precision;
+    char        *str;
 }				t_arg;
 
 /*
