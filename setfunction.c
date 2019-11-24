@@ -29,7 +29,7 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 	if (c == 'f')
 	{
 		st = ft_float(precision(va_arg(nbr, double), arg.precision), arg);
-		ft_putstrdel(parsing(st, ft_strlen(st), arg)); //Penser a varier 6 en fonction du %.
+		ft_putstrdel(parsing(st, ft_strlen(st), arg)); //Penser a varier 6 en fonction du %. //DONE
 	}
 	while ((BASE[base] != c && base <= 16) || BASE[base] == '.')
 		base++;
@@ -49,21 +49,6 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 		}
 		printnbr(nb, "0123456789", 10, arg);
 	}
-}
-
-int         set_width(const char *st, t_arg *arg, int *pos)
-{
-    int     i;
-
-    i = 0;
-    while(*st && ft_isdigit(*st))
-    {
-        arg->width = (arg->width * 10) + (*st - '0');
-        st++;
-        i++;
-    }
-    *pos += i;
-    return (i);
 }
 
 int         set_precision(const char *st, t_arg *arg, int *pos)
@@ -113,10 +98,6 @@ int			setfunction(const char *st, va_list ap)
 		setfunctionnum(ap, st[0], ULONG_MAX, arg);
 		return (2 + i);
 	}
-	if (ft_isdigit(*st))
-    {
-	    st += set_width(st, &arg, &i);
-    }
     if (*st == '.')
     {
         st += set_precision(st, &arg, &i);

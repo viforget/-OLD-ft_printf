@@ -14,118 +14,117 @@
 
 int				ft_printf(const char *format, ...)
 {
-	va_list			ap;
-	unsigned int	s;
-	unsigned int	e;
+    va_list			ap;
+    unsigned int	s;
+    unsigned int	e;
 
-	s = 0;
-	e = 0;
-	va_start(ap, format);
-	while (format[e] != '\0')
-	{
-		if (format[e] == '%')
-		{
-			write(1, format + s, e - s);
-			e += setfunction(format + e + 1, ap) + 1;
-			s = e;
-		}
-		e++;
-	}
-	write(1, format + s, e - s);
-	va_end(ap);
-	return (0);
+    s = 0;
+    e = 0;
+    va_start(ap, format);
+    while (format[e] != '\0')
+    {
+        if (format[e] == '%')
+        {
+            write(1, format + s, e - s);
+            e += setfunction(format + e + 1, ap) + 1;
+            s = e;
+        }
+        e++;
+    }
+    write(1, format + s, e - s);
+    va_end(ap);
+    return (0);
 }
 
 #include <stdio.h>
 
 int				main(void)
 {
-	int a;
+    int a;
 
-	a = 123;
-	//ft_printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
-	//printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
-	ft_printf("|%.1f|\n", 42.5);
+    a = 123;
+    //ft_printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
+    //printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
+    ft_printf("|%.1f|\n", 42.5);
     printf("|%.1f|\n", 42.5);
 
-    ft_printf("|%.1f|\n", 3.1415354);
-    printf("|%.1f|\n", 3.1415354);
-   /*
-    test::sprintf(buffer, "%.4f", 3.1415354);
-    REQUIRE(!strcmp(buffer, "3.1415"));
+    ft_printf("|%04.1f|\n", -3.1415354);
+    printf("|%04.1f|\n", -3.1415354);
 
-    test::sprintf(buffer, "%.3f", 30343.1415354);
-    REQUIRE(!strcmp(buffer, "30343.142"));
+    ft_printf("|%04d|\n",-42);
+    printf("|%04d|\n", -42);
 
-    test::sprintf(buffer, "%.0f", 34.1415354);
-    REQUIRE(!strcmp(buffer, "34"));
+    ft_printf("|%.4f|\n", 3.1415354);
+    printf("|%.4f|\n", 3.1415354);
 
-    test::sprintf(buffer, "%.0f", 1.3);
-    REQUIRE(!strcmp(buffer, "1"));
+    ft_printf("|%.3f|\n", 30343.1415354);
+    printf("|%.3f|\n", 30343.1415354);
 
-    test::sprintf(buffer, "%.0f", 1.55);
-    REQUIRE(!strcmp(buffer, "2"));
+    ft_printf("|%.0f|\n", 34.1415354);
+    printf("|%.0f|\n", 34.1415354);
 
-    test::sprintf(buffer, "%.1f", 1.64);
-    REQUIRE(!strcmp(buffer, "1.6"));
+    ft_printf("|%.0f|\n", 1.3);
+    printf("|%.0f|\n", 1.3);
 
-    test::sprintf(buffer, "%.2f", 42.8952);
-    REQUIRE(!strcmp(buffer, "42.90"));
+    ft_printf("|%.0f|\n", 1.55);
+    printf("|%.0f|\n", 1.55);
 
-    test::sprintf(buffer, "%.9f", 42.8952);
-    REQUIRE(!strcmp(buffer, "42.895200000"));
+    ft_printf("|%.1f|\n", 1.64);
+    printf("|%.1f|\n", 1.64);
 
-    test::sprintf(buffer, "%.10f", 42.895223);
-    REQUIRE(!strcmp(buffer, "42.8952230000"));
+    ft_printf("|%.2f|\n", 42.8952);
+    printf("|%.2f|\n", 42.8952);
 
-    // this testcase checks, that the precision is truncated to 9 digits.
-    // a perfect working float should return the whole number
-    test::sprintf(buffer, "%.12f", 42.89522312345678);
-    REQUIRE(!strcmp(buffer, "42.895223123000"));
+    ft_printf("|%.9f|\n", 42.8952);
+    printf("|%.9f|\n", 42.8952);
 
-    // this testcase checks, that the precision is truncated AND rounded to 9 digits.
-    // a perfect working float should return the whole number
-    test::sprintf(buffer, "%.12f", 42.89522387654321);
-    REQUIRE(!strcmp(buffer, "42.895223877000"));
+    ft_printf("|%.10f|\n", 42.895223);
+    printf("|%.10f|\n", 42.895223);
 
-    test::sprintf(buffer, "%6.2f", 42.8952);
-    REQUIRE(!strcmp(buffer, " 42.90"));
+    ft_printf("|%.12f|\n", 42.89522312345678);
+    printf("|%.12f|\n", 42.89522312345678);
 
-    test::sprintf(buffer, "%+6.2f", 42.8952);
-    REQUIRE(!strcmp(buffer, "+42.90"));
+    ft_printf("|%.12f|\n", 42.89522387654321);
+    printf("|%.12f|\n", 42.89522387654321);
 
-    test::sprintf(buffer, "%+5.1f", 42.9252);
-    REQUIRE(!strcmp(buffer, "+42.9"));
+    ft_printf("|%6.2f|\n", 42.8952);
+    printf("|%6.2f|\n", 42.8952);
 
-    test::sprintf(buffer, "%f", 42.5);
-    REQUIRE(!strcmp(buffer, "42.500000"));
+    ft_printf("|%+6.2f|\n", 42.8952);
+    printf("|%+6.2f|\n", 42.8952);
 
-    test::sprintf(buffer, "%.1f", 42.5);
-    REQUIRE(!strcmp(buffer, "42.5"));
+    ft_printf("|%+5.1f|\n", 42.9252);
+    printf("|%+5.1f|\n", 42.9252);
 
-    test::sprintf(buffer, "%f", 42167.0);
-    REQUIRE(!strcmp(buffer, "42167.000000"));
+    ft_printf("|%f|\n", 42.5);
+    printf("|%f|\n", 42.5);
 
-    test::sprintf(buffer, "%.9f", -12345.987654321);
-    REQUIRE(!strcmp(buffer, "-12345.987654321"));
+    ft_printf("|%.1f|\n", 42.5);
+    printf("|%.1f|\n", 42.5);
 
-    test::sprintf(buffer, "%.1f", 3.999);
-    REQUIRE(!strcmp(buffer, "4.0"));
+    ft_printf("|%f|\n", 42167.0);
+    printf("|%f|\n", 42167.0);
 
-    test::sprintf(buffer, "%.0f", 3.5);
-    REQUIRE(!strcmp(buffer, "4"));
+    ft_printf("|%.9f|\n", -12345.987654321);
+    printf("|%.9f|\n", -12345.987654321);
 
-    test::sprintf(buffer, "%.0f", 4.5);
-    REQUIRE(!strcmp(buffer, "4"));
+    ft_printf("|%.1f|\n", 3.999);
+    printf("|%.1f|\n", 3.999);
 
-    test::sprintf(buffer, "%.0f", 3.49);
-    REQUIRE(!strcmp(buffer, "3"));
+    ft_printf("|%.0f|\n", 3.5);
+    printf("|%.0f|\n", 3.5);
 
-    test::sprintf(buffer, "%.1f", 3.49);
-    REQUIRE(!strcmp(buffer, "3.5"));
+    ft_printf("|%.0f|\n", 4.5);
+    printf("|%.0f|\n", 4.5);
 
-    test::sprintf(buffer, "a%-5.1f", 0.5);
-    REQUIRE(!strcmp(buffer, "a0.5  "));*/
+    ft_printf("|%.0f|\n", 3.49);
+    printf("|%.0f|\n", 3.49);
+
+    ft_printf("|%.1f|\n", 3.49);
+    printf("|%.1f|\n", 3.49);
+
+    ft_printf("a|%-5.1f|\n", 0.5);
+    printf("a|%-5.1f|\n", 0.5);
 
     return (0);
 }
