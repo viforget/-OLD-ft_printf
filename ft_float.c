@@ -27,7 +27,7 @@ int		exponent(int n, int e)
 	return (n);
 }
 
-float	precision(long double f, int p)
+long double	precision(double f, int p)
 {
 	int i;
 
