@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include "includes/ft_printf.h"
 #include "libft/libft.h"
 
 int		exponent(int n, int e)
@@ -49,37 +50,36 @@ int		ft_nbrlen(int nbr)
 	return (len);
 }
 
-char	*ft_float(long double f, int maxF)
+char	*ft_float(long double f, t_arg arg)
 {
-	char	*period;
 	int		nb;
 	int		size;
 	int		i;
 
-	size = ft_nbrlen((int)f) + maxF + 2;
-	period = malloc(size * sizeof(char));
+	size = ft_nbrlen((int)f) + arg.precision + 2;
+	arg.str = malloc(size * sizeof(char));
 	nb = (int)f;
 	f -= nb;
-	f *= exponent(10,maxF);
+	f *= exponent(10,arg.precision);
 	i = 0;
 	size--;
-	period[size] = '\0';
-	while (i < maxF)
+	arg.str[size] = '\0';
+	while (i < arg.precision)
 	{
 		size--;
 		i++;
-		period[size] = '0' + (int)f % 10;
+		arg.str[size] = '0' + (int)f % 10;
 		f /=10;
 	}
 	size--;
-	period[size] = '.';
+	arg.str[size] = '.';
 	while (nb > 0)
 	{
 		size--;
-		period[size] = '0' + nb % 10;
+		arg.str[size] = '0' + nb % 10;
 		nb /=10;
 	}
-	return (period);
+	return (arg.str);
 }
 
 /*

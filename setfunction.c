@@ -28,7 +28,7 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 	}
 	if (c == 'f')
 	{
-		st = ft_float(precision(va_arg(nbr, double), 1), 1);
+		st = ft_float(precision(va_arg(nbr, double), arg.precision), arg);
 		ft_putstrdel(parsing(st, ft_strlen(st), arg)); //Penser a varier 6 en fonction du %.
 	}
 	while ((BASE[base] != c && base <= 16) || BASE[base] == '.')
@@ -51,31 +51,31 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 	}
 }
 
-int         set_width(const char *st, t_arg arg)
+int         set_width(const char *st, t_arg *arg)
 {
     int     i;
 
     i = 0;
-    while(*st && ft_isalnum(*st))
+    while(*st && ft_isdigit(*st))
     {
-        arg.width = (arg.width * 10) + (*st - '0');
+        arg->width = (arg->width * 10) + (*st - '0');
         st++;
         i++;
     }
     return (i);
 }
 
-int         set_precision(const char *st, t_arg arg)
+int         set_precision(const char *st, t_arg *arg)
 {
     int     i;
 
-    i = 0;
+    i = 1;
     st++;
-    if (ft_isalnum((*st)) && *st != '0')
-        arg.precision = 0;
-    while(*st && ft_isalnum(*st))
+    if (ft_isdigit((*st)) && *st != '0')
+        arg->precision = 0;
+    while(*st && ft_isdigit(*st))
     {
-        arg.precision = (arg.precision * 10) + (*st - '0');
+        arg->precision = (arg->precision * 10) + (*st - '0');
         st++;
         i++;
     }
@@ -111,15 +111,15 @@ int			setfunction(const char *st, va_list ap)
 		setfunctionnum(ap, st[0], ULONG_MAX, arg);
 		return (2 + i);
 	}
-	else if (ft_isalnum(*st))
+	if (ft_isdigit(*st))
     {
-	    st += set_width(st, arg);
+	    st += set_width(st, &arg);
     }
-    else if (*st == '.')
+    if (*st == '.')
     {
-        st += set_precision(st, arg);
+        st += set_precision(st, &arg);
     }
-	else if (*st == 's')
+	if (*st == 's')
 		ft_putstr(va_arg(ap, char *)); //THINK ABOUT THIS
 	else if (*st == 'c')
 		ft_putchar(va_arg(ap, int)); //THIS TOO

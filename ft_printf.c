@@ -45,10 +45,10 @@ int				main(void)
 	a = 123;
 	//ft_printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
 	//printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
-	ft_printf("|%f|\n", 42.5);
+	ft_printf("|%.1f|\n", 42.5);
     printf("|%.1f|\n", 42.5);
 
-    ft_printf("|%f|\n", 3.1415354);
+    ft_printf("|%.1f|\n", 3.1415354);
     printf("|%.1f|\n", 3.1415354);
    /*
     test::sprintf(buffer, "%.4f", 3.1415354);
