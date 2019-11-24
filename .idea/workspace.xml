@@ -35,20 +35,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d2a853a5-b524-4e35-be94-e73186344034" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/ft_float.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/ft_float.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/ft_printf.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/ft_printf.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/printnbr.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/printnbr.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/setfunction.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/setfunction.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/stockarg.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ft_printf.dir/stockarg.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/ft_printf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/ft_printf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ft_float.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_float.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ft_printf.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/ft_printf.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ft_printf.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setfunction.c" beforeDir="false" afterPath="$PROJECT_DIR$/setfunction.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stockarg.c" beforeDir="false" afterPath="$PROJECT_DIR$/stockarg.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574509052818</updated>
-      <workItem from="1574509054264" duration="12931000" />
+      <workItem from="1574509054264" duration="13973000" />
     </task>
     <servers />
   </component>

@@ -51,7 +51,7 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 	}
 }
 
-int         set_width(const char *st, t_arg *arg)
+int         set_width(const char *st, t_arg *arg, int *pos)
 {
     int     i;
 
@@ -62,10 +62,11 @@ int         set_width(const char *st, t_arg *arg)
         st++;
         i++;
     }
+    *pos += i;
     return (i);
 }
 
-int         set_precision(const char *st, t_arg *arg)
+int         set_precision(const char *st, t_arg *arg, int *pos)
 {
     int     i;
 
@@ -79,6 +80,7 @@ int         set_precision(const char *st, t_arg *arg)
         st++;
         i++;
     }
+    *pos += i;
     return (i);
 }
 
@@ -113,11 +115,11 @@ int			setfunction(const char *st, va_list ap)
 	}
 	if (ft_isdigit(*st))
     {
-	    st += set_width(st, &arg);
+	    st += set_width(st, &arg, &i);
     }
     if (*st == '.')
     {
-        st += set_precision(st, &arg);
+        st += set_precision(st, &arg, &i);
     }
 	if (*st == 's')
 		ft_putstr(va_arg(ap, char *)); //THINK ABOUT THIS
