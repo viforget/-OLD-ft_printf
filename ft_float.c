@@ -28,13 +28,16 @@ int		exponent(int n, int e)
 	return (n);
 }
 
-long double	precision(double f, int p)
+long double	precision(double f, t_arg *arg)
 {
 	int i;
+	int p;
 
+	p = arg->precision;
+	f < 0 ? ((arg->neg = 1) && (f *= -1)) : 0;
 	i = f * exponent(10,p + 1);
-	if (i % 10 > 5)
-		f += 1.0 / exponent(10,p + 1);
+	if (i % 10 > 5 || (((i % 10) == 5) && (((i / 10) % 10) % 2 == 1) ))
+		p > 0 ? (f += 1.0 / exponent(10,p)) : (f += 1);
 	return (f);
 }
 
@@ -56,9 +59,8 @@ char	*ft_float(long double f, t_arg arg)
 	int		size;
 	int		i;
 
-	size = ft_nbrlen((int)f) + arg.precision + (f >= 0 ? 2 : 3);
+	size = ft_nbrlen((int)f) + arg.precision + 2;
 	arg.str = ft_memalloc(size * sizeof(char));
-	f < 0 ? ((arg.str[0] = '-') && (f *= -1)) : 0;
 	nb = (int)f;
 	f -= nb;
 	f *= exponent(10,arg.precision);
@@ -74,6 +76,7 @@ char	*ft_float(long double f, t_arg arg)
 	size--;
 	if (arg.precision > 0)
 	    arg.str[size] = '.';
+	nb == 0 ? arg.str[size - 1] = '0' : 0;
 	while (nb > 0)
 	{
 		size--;

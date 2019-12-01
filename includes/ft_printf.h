@@ -68,7 +68,7 @@ int		setfunction(const char *st, va_list ap);
 ** FT_FLOAT.C
 */
 
-long double	precision(double f, int p);
+long double	precision(double f, t_arg *arg);
 char	*ft_float(long double f, t_arg arg);
 
 #endif
