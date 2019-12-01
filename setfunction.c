@@ -57,7 +57,7 @@ int         set_precision(const char *st, t_arg *arg, int *pos)
 
     i = 1;
     st++;
-    if (ft_isdigit((*st)) && *st != '0')
+    if (ft_isdigit((*st)))
         arg->precision = 0;
     while(*st && ft_isdigit(*st))
     {
