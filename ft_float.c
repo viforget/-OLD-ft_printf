@@ -57,14 +57,13 @@ char	*ft_float(long double f, t_arg arg)
 	int		i;
 
 	size = ft_nbrlen((int)f) + arg.precision + (f >= 0 ? 2 : 3);
-	arg.str = malloc(size * sizeof(char));
+	arg.str = ft_memalloc(size * sizeof(char));
 	f < 0 ? ((arg.str[0] = '-') && (f *= -1)) : 0;
 	nb = (int)f;
 	f -= nb;
 	f *= exponent(10,arg.precision);
 	i = 0;
 	size--;
-	arg.str[size] = '\0';
 	while (i < arg.precision)
 	{
 		size--;
@@ -73,7 +72,8 @@ char	*ft_float(long double f, t_arg arg)
 		f /=10;
 	}
 	size--;
-	arg.str[size] = '.';
+	if (arg.precision > 0)
+	    arg.str[size] = '.';
 	while (nb > 0)
 	{
 		size--;
