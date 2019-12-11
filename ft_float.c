@@ -66,7 +66,7 @@ char	*ft_float(long double f, t_arg arg)
 
 	if (f != f)
         return (ft_nan());
-    if (f )
+    //if (f )
 	size = ft_nbrlen((int)f) + arg.precision + 2;
 	arg.str = ft_memalloc(size * sizeof(char));
 	nb = (int)f;

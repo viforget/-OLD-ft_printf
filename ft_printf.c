@@ -45,6 +45,7 @@ int				main(void)
     a = 123;
     //ft_printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
     //printf("HEY: %sNBR = %li<3\n", "HEY ", 122153210615);
+    ft_printf("|%.10f|\n", 42.895223);/*********************************/
     printf("1\n");
     ft_printf("|%.1f|\n", 42.5);
     printf("|%.1f|\n\n", 42.5);
@@ -90,7 +91,7 @@ int				main(void)
     printf("|%.9f|\n\n", 42.8952);
 
     printf("12\n");
-    ft_printf("|%.10f|\n", 42.895223);
+    ft_printf("|%.10f|\n", 42.895223);/*********************************/
     printf("|%.10f|\n\n", 42.895223);
 
     printf("13\n");
@@ -180,10 +181,10 @@ int				main(void)
     printf("34\n");
     float r = 1e27;
     ft_putnbr((int)r);
-    ft_printf("|%.6f|\n", r);
+    ft_printf("|%.6f|\n", r);/***********************************************/
     printf("|%.6f|\n\n", r);
     r+=0.1 ;
-    ft_printf("|%.6f|\n", r);
+    ft_printf("|%.6f|\n", r); /***********************************************/
     printf("|%.6f|\n\n", r);
     return (0);
 }

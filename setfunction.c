@@ -28,7 +28,7 @@ void			setfunctionnum(va_list nbr, char c, unsigned long long size, t_arg arg)
 	}
 	if (c == 'f')
 	{
-		st = ft_float(precision(va_arg(nbr, double), &arg), arg);
+		st = ft_float((long double)precision(va_arg(nbr, double), &arg), arg);
 		ft_putstrdel(parsing(st, ft_strlen(st), arg)); //Penser a varier 6 en fonction du %. //DONE
 	}
 	while ((BASE[base] != c && base <= 16) || BASE[base] == '.')
