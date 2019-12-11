@@ -53,12 +53,20 @@ int		ft_nbrlen(int nbr)
 	return (len);
 }
 
+char    *ft_nan()
+{
+    return ("nan");
+}
+
 char	*ft_float(long double f, t_arg arg)
 {
 	int		nb;
 	int		size;
 	int		i;
 
+	if (f != f)
+        return (ft_nan());
+    if (f )
 	size = ft_nbrlen((int)f) + arg.precision + 2;
 	arg.str = ft_memalloc(size * sizeof(char));
 	nb = (int)f;

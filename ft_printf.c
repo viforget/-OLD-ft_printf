@@ -176,5 +176,14 @@ int				main(void)
     printf("33\n");
     ft_printf("|%.0f|\n", -3.5);
     printf("|%.0f|\n\n", -3.5);
+
+    printf("34\n");
+    float r = 1e27;
+    ft_putnbr((int)r);
+    ft_printf("|%.6f|\n", r);
+    printf("|%.6f|\n\n", r);
+    r+=0.1 ;
+    ft_printf("|%.6f|\n", r);
+    printf("|%.6f|\n\n", r);
     return (0);
 }
