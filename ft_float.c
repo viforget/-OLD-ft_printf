@@ -28,6 +28,25 @@ int		exponent(int n, int e)
 	return (n);
 }
 
+
+unsigned long	exponent_ten(long double nb, int e)
+{
+    int		i;
+    unsigned long n;
+
+    i = 10;
+    n = ((int)nb * 10) % 10;
+    while(e >= 1)
+    {
+        nb *= i;
+        n *= 10;
+        n += n % 10;
+        e--;
+    }
+    n = (unsigned long)nb;
+    return (n);
+}
+
 long double	precision(double f, t_arg *arg)
 {
 	int i;
@@ -43,10 +62,8 @@ long double	precision(double f, t_arg *arg)
 
 int		ft_nbrlen(int nbr)
 {
-	int		i;
 	int		len;
 
-	i = 10;
 	len = 1;
 	while ((nbr /= 10) > 0)
 		len++;
@@ -58,27 +75,28 @@ char    *ft_nan()
     return ("nan");
 }
 
-char	*ft_float(long double f, t_arg arg)
+char	*ft_float(long double fl, t_arg arg)
 {
 	int		nb;
 	int		size;
 	int		i;
+	unsigned long f;
 
-	if (f != f)
+	if (fl != fl)
         return (ft_nan());
-    //if (f )
-	size = ft_nbrlen((int)f) + arg.precision + 2;
+    //if (fl )
+	size = ft_nbrlen((int)fl) + arg.precision + 2;
 	arg.str = ft_memalloc(size * sizeof(char));
-	nb = (int)f;
-	f -= nb;
-	f *= exponent(10,arg.precision);
+	nb = (int)fl;
+	fl -= nb;
+	f = exponent_ten(fl,arg.precision);
 	i = 0;
 	size--;
 	while (i < arg.precision)
 	{
 		size--;
 		i++;
-		arg.str[size] = '0' + (int)f % 10;
+		arg.str[size] = '0' + f % 10;
 		f /=10;
 	}
 	size--;
