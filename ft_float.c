@@ -77,7 +77,7 @@ char    *ft_nan()
 
 char	*ft_float(long double fl, t_arg arg)
 {
-	int		nb;
+	unsigned int		nb;
 	int		size;
 	int		i;
 	unsigned long f;
@@ -85,9 +85,9 @@ char	*ft_float(long double fl, t_arg arg)
 	if (fl != fl)
         return (ft_nan());
     //if (fl )
-	size = ft_nbrlen((int)fl) + arg.precision + 2;
+	size = ft_nbrlen((unsigned int)fl) + arg.precision + 2;
 	arg.str = ft_memalloc(size * sizeof(char));
-	nb = (int)fl;
+	nb = (unsigned int)fl;
 	fl -= nb;
 	f = exponent_ten(fl,arg.precision);
 	i = 0;
